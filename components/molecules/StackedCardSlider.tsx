@@ -69,9 +69,18 @@ export const StackedCardSlider: React.FC<StackedCardSliderProps> = ({ cards }) =
 
   return (
     <div className="relative w-full h-[600px] flex items-center justify-center mt-[-245px]">
-      <Tooltip text="월 100만원" />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <Tooltip text="월 100만원" />
+      </motion.div>
       {displayedCards.length > 1 && (
-        <button
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
           className="absolute top-1/2 z-40 bg-transparent p-0 m-0 flex items-center focus:outline-none"
           style={{
             left: "-48px",
@@ -86,7 +95,7 @@ export const StackedCardSlider: React.FC<StackedCardSliderProps> = ({ cards }) =
           <svg width="32" height="32" fill="none" stroke="#FFFFFF" strokeWidth="2">
             <path d="M20 6 L12 16 L20 26" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-        </button>
+        </motion.button>
       )}
 
       <AnimatePresence mode="wait">
@@ -95,12 +104,12 @@ export const StackedCardSlider: React.FC<StackedCardSliderProps> = ({ cards }) =
           return (
             <motion.div
               key={card.id}
-              initial={false}
+              initial={{ opacity: 0 }}
               animate={{
                 zIndex: style.zIndex,
                 x: style.x,
                 scale: style.scale,
-                opacity: style.opacity,
+                opacity: style.opacity !== undefined ? style.opacity : 1,
               }}
               transition={{
                 duration: 0.5,
@@ -115,7 +124,10 @@ export const StackedCardSlider: React.FC<StackedCardSliderProps> = ({ cards }) =
       </AnimatePresence>
 
       {displayedCards.length > 1 && (
-        <button
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
           className="absolute top-1/2 z-40 bg-transparent border-none p-0 m-0 flex items-center focus:outline-none"
           style={{
             right: "-48px",
@@ -130,7 +142,7 @@ export const StackedCardSlider: React.FC<StackedCardSliderProps> = ({ cards }) =
           <svg width="32" height="32" fill="none" stroke="#FFFFFF" strokeWidth="2">
             <path d="M12 6 L20 16 L12 26" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-        </button>
+        </motion.button>
       )}
     </div>
   );

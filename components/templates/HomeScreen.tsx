@@ -14,9 +14,8 @@ interface HomeScreenProps {
 export const HomeScreen: React.FC<HomeScreenProps> = ({ data, backgroundImage }) => {
   return (
     <div className="relative w-full h-[1042px] overflow-hidden">
-      {/* ensure the bg image will show */}
       {backgroundImage && (
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0" style={{ top: '-117px' }}>
           <Image src={backgroundImage} alt="Home background" fill className="object-cover" priority />
         </div>
       )}
