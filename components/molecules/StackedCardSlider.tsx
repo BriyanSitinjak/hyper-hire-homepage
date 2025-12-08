@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ProfileCard } from './ProfileCard';
+import { Tooltip } from '@/components/atoms/Tooltip';
 import type { ProfileCard as ProfileCardType } from '@/types';
 
 interface StackedCardSliderProps {
@@ -67,10 +68,11 @@ export const StackedCardSlider: React.FC<StackedCardSliderProps> = ({ cards }) =
   };
 
   return (
-    <div className="relative w-full h-[600px] flex items-center justify-center border border-solid border-red-900">
+    <div className="relative w-full h-[600px] flex items-center justify-center mt-[-245px]">
+      <Tooltip text="월 100만원" />
       {displayedCards.length > 1 && (
         <button
-          className="absolute top-1/2 z-40 bg-transparent p-0 m-0 flex items-center focus:outline-none border border-solid border-red-900"
+          className="absolute top-1/2 z-40 bg-transparent p-0 m-0 flex items-center focus:outline-none"
           style={{
             left: "-48px",
             transform: "translateY(-50%)",

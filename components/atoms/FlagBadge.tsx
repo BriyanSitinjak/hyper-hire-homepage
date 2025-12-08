@@ -6,20 +6,19 @@ import Image from 'next/image';
 interface FlagBadgeProps {
   src: string;
   alt: string;
-  size?: number;
 }
 
-export const FlagBadge: React.FC<FlagBadgeProps> = ({ src, alt, size = 40 }) => {
+export const FlagBadge: React.FC<FlagBadgeProps> = ({ src, alt }) => {
   return (
     <div
-      className="absolute rounded-full overflow-hidden border-2 border-white shadow-md"
+      className="absolute overflow-hidden"
       style={{
-        width: size,
-        height: size,
+        width: 25,
+        height: 18,
         bottom: 0,
-        right: 0,
+        right: '10px',
       }}>
-      <Image src={src} alt={alt} width={size} height={size} className="object-cover w-full h-full" />
+      <Image src={src} alt={alt} width={25} height={18} className="object-cover w-full h-full" />
     </div>
   );
 };
