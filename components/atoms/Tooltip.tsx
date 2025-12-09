@@ -9,7 +9,7 @@ interface TooltipProps {
 export const Tooltip: React.FC<TooltipProps> = ({ text }) => {
   return (
     <div
-      className="absolute top-[16px] left-1/2 z-50 flex flex-col items-center w-[152px] h-[51px]"
+      className="absolute top-[-26px] lg:top-[16px] left-1/2 z-50 flex flex-col items-center w-[152px] h-[51px]"
       style={{
         transform: 'translateX(-50%)',
       }}

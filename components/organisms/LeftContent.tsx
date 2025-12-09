@@ -26,7 +26,7 @@ export const LeftContent: React.FC<LeftContentProps> = ({
   box,
 }) => {
   return (
-    <div className="flex flex-col items-start justify-start w-full h-full relative">
+    <div className="flex flex-col items-start justify-start w-full h-full relative mt-[-110px] lg:mt-0">
       {/* Popup tooltip */}
       <div className="relative" style={{ marginTop: '20%', marginLeft: '0' }}>
         <motion.div
@@ -37,13 +37,13 @@ export const LeftContent: React.FC<LeftContentProps> = ({
             delay: 1.6, 
             ease: 'easeOut',
           }}
-          className="absolute top-[-16px] left-0 mt-2 z-50 py-1.5 px-3 bg-white rounded-lg"
+          className="absolute top-[-16px] lg:left-0 mt-2 z-50 py-1.5 px-3 bg-[#8BC4FF] lg:bg-white rounded-lg"
           style={{
             boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
             position: 'relative',
           }}
         >
-          <span className="text-[#40E2E8] font-bold">{popupContent}</span>
+          <span className="text-white lg:text-[#40E2E8] font-bold">{popupContent}</span>
         </motion.div>
       </div>
 
@@ -53,7 +53,7 @@ export const LeftContent: React.FC<LeftContentProps> = ({
         animationType="fadeInUp"
         duration={0.5}
       >
-        <h1 className="text-[48px] font-black text-white">{title1}</h1>
+        <h1 className="text-[36px] lg:text-[46px] font-black text-white">{title1}</h1>
       </AnimatedText>
 
       {/* Title 2 */}
@@ -62,7 +62,7 @@ export const LeftContent: React.FC<LeftContentProps> = ({
         animationType="fadeInUp"
         duration={0.5}
       >
-        <h1 className="text-[48px] font-black text-white">{title2}</h1>
+        <h1 className="text-[36px] lg:text-[46px] font-black text-white">{title2}</h1>
       </AnimatedText>
 
       {/* Subtitle 1 */}
@@ -70,7 +70,7 @@ export const LeftContent: React.FC<LeftContentProps> = ({
         animationDelay={0.6}
         animationType="fadeInUp"
         duration={0.5}
-        className='mt-4'
+        className='mt-4 hidden lg:block'
       >
         <p className="text-[24px] font-black text-white">{subtitle1}</p>
       </AnimatedText>
@@ -80,28 +80,41 @@ export const LeftContent: React.FC<LeftContentProps> = ({
         animationDelay={0.8}
         animationType="fadeInUp"
         duration={0.5}
+        className='hidden lg:block'
       >
         <p className="text-[24px] font-black text-white">{subtitle2}</p>
       </AnimatedText>
 
-      {/* Subtitle 3 */}
+      {/* Subtitle 1 & 2 - One line on mobile */}
+      <AnimatedText
+        animationDelay={0.6}
+        animationType="fadeInUp"
+        duration={0.5}
+        className='mt-4 block lg:hidden'
+      >
+        <p className="text-[18px] lg:text-[24px] font-black text-white">
+          {subtitle1} {subtitle2}
+        </p>
+      </AnimatedText>
+
+      {/* Subtitle 3 - Hide on mobile */}
       <AnimatedText
         animationDelay={1.0}
         animationType="fadeInUp"
         duration={0.5}
-        className='mt-6'
+        className='mt-6 hidden lg:block'
       >
         <p className="text-[18px] font-black text-white underline">{subtitle3}</p>
       </AnimatedText>
 
-      {/* 3 Cards */}
+      {/* 3 Cards - Hide on mobile */}
       <AnimatedText
         animationDelay={1.2}
         animationType="fadeIn"
         duration={0.5}
-        className='mt-[60px]'
+        className='mt-[60px] hidden lg:block'
       >
-       <div className='flex gap-12 w-full h-fit'>
+       <div className='flex gap-12 w-full h-fit '>
         {box.map((data, index) => (
           <BoxInfo id={`${data.id}-${index}`} title={data.title} subTitle={data.subTitle}  />
         ))}

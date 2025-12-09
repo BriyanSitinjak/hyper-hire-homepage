@@ -12,7 +12,19 @@ interface StackedCardSliderProps {
 
 export const StackedCardSlider: React.FC<StackedCardSliderProps> = ({ cards }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const displayedCards = cards.slice(0, 3); // Ensure max 3 cards
+
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Auto-rotate cards
   useEffect(() => {
@@ -41,8 +53,8 @@ export const StackedCardSlider: React.FC<StackedCardSliderProps> = ({ cards }) =
       // Next card: peek on the right
       return {
         zIndex: 10,
-        x: 120,
-        scale: 0.92,
+        x: isMobile ? 60 : 120,
+        scale: isMobile ? 0.8 : 0.92,
         opacity: 0.75,
         pointerEvents: 'none',
       };
@@ -50,8 +62,8 @@ export const StackedCardSlider: React.FC<StackedCardSliderProps> = ({ cards }) =
       // Previous card: peek on the left
       return {
         zIndex: 10,
-        x: -120,
-        scale: 0.92,
+        x: isMobile ? -60 : -120,
+        scale: isMobile ? 0.8 : 0.92,
         opacity: 0.75,
         pointerEvents: 'none',
       };
@@ -68,7 +80,7 @@ export const StackedCardSlider: React.FC<StackedCardSliderProps> = ({ cards }) =
   };
 
   return (
-    <div className="relative w-full h-[600px] flex items-center justify-center ">
+    <div className="relative w-full h-[400px] lg:h-[600px] flex items-center justify-center">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -83,7 +95,7 @@ export const StackedCardSlider: React.FC<StackedCardSliderProps> = ({ cards }) =
           transition={{ duration: 0.5 }}
           className="absolute top-1/2 z-40 bg-transparent p-0 m-0 flex items-center focus:outline-none"
           style={{
-            left: "-48px",
+            left: "-20px",
             transform: "translateY(-50%)",
             background: 'none',
             boxShadow: 'none'
@@ -92,7 +104,7 @@ export const StackedCardSlider: React.FC<StackedCardSliderProps> = ({ cards }) =
           aria-label="Previous card"
           type="button"
         >
-          <svg width="32" height="32" fill="none" stroke="#FFFFFF" strokeWidth="2">
+          <svg width="24" height="24" className="lg:w-8 lg:h-8" fill="none" stroke="#FFFFFF" strokeWidth="2">
             <path d="M20 6 L12 16 L20 26" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </motion.button>
@@ -130,7 +142,7 @@ export const StackedCardSlider: React.FC<StackedCardSliderProps> = ({ cards }) =
           transition={{ duration: 0.5 }}
           className="absolute top-1/2 z-40 bg-transparent border-none p-0 m-0 flex items-center focus:outline-none"
           style={{
-            right: "-48px",
+            right: "-20px",
             transform: "translateY(-50%)",
             background: 'none',
             boxShadow: 'none'
@@ -139,7 +151,7 @@ export const StackedCardSlider: React.FC<StackedCardSliderProps> = ({ cards }) =
           aria-label="Next card"
           type="button"
         >
-          <svg width="32" height="32" fill="none" stroke="#FFFFFF" strokeWidth="2">
+          <svg width="24" height="24" className="lg:w-8 lg:h-8" fill="none" stroke="#FFFFFF" strokeWidth="2">
             <path d="M12 6 L20 16 L12 26" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </motion.button>

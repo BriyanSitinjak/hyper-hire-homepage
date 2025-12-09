@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { LeftContent } from '../organisms/LeftContent';
 import { RightContent } from '../organisms/RightContent';
+import { MobileChecklistSection } from '../organisms/MobileChecklistSection';
 import type { HomePageData } from '@/types';
 import { BoxSlider } from '../atoms/BoxSlider';
 import { AnimatedText } from '../molecules/AnimatedText';
@@ -54,9 +55,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ data, backgroundImage })
         </div>
       )}
 
-      <div className="relative z-10 h-full px-[346px]">
-        <div className="grid grid-cols-2 mt-[136px]">
-          <div className="relative">
+      <div className="relative z-10 h-full px-4 lg:px-[346px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 mt-[136px]">
+          <div className="relative flex justify-center lg:justify-start">
             <LeftContent 
               popupContent={data.leftContent.popupContent}
               title1={data.leftContent.title1}
@@ -68,11 +69,16 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ data, backgroundImage })
             />
           </div>
 
-          <div className="relative">
+          <div className="relative flex justify-center lg:justify-start mt-8 lg:mt-0">
             <RightContent cards={data.cards} />
           </div>
         </div>
-        <div className='relative w-full min-h-[88px] mt-[60px] overflow-hidden'>
+        
+        {/* Mobile Checklist Section - Only visible on mobile */}
+        <MobileChecklistSection />
+        
+        {/* BoxSlider - Hidden on mobile */}
+        <div className='relative w-full min-h-[88px] mt-[60px] overflow-hidden hidden lg:block'>
           <motion.div
             initial={{ opacity: isInitial ? 0 : 1 }}
             animate={{ 

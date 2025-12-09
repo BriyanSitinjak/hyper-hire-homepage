@@ -14,15 +14,21 @@ const menuItems = [
 export const Header: React.FC = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 h-[60px] bg-transparent">
-      <div className="h-full px-[346px] flex items-center justify-between py-2.5">
-          <Image src="/logo_hyper_hire_white.png" alt="Hyper Hire Logo" width={100} height={21} />
+      <div className="h-full px-4 lg:px-[346px] flex items-center justify-start lg:justify-between py-2.5">
+          <Image 
+            src="/logo_hyper_hire_white.png" 
+            alt="Hyper Hire Logo" 
+            width={100} 
+            height={21}
+            className="w-[100px] h-[21px]"
+          />
 
-        <div className="flex flex-row gap-15">
+        <div className="hidden lg:flex flex-row gap-15">
           <DropdownMenu buttonLabel="채용" items={menuItems} />
           <h3 className="font-black text-base text-white">해외 개발자 활용 서비스</h3>
         </div>
 
-        <div>
+        <div className="hidden lg:block">
           <button className="text-[#4A77FF] font-black text-xl text-center py-1.5 px-6 bg-white hover:bg- rounded-lg ">
             문의하기
           </button>
