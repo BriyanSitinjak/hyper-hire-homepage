@@ -4,35 +4,78 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 interface AnimatedTextProps {
-  content: string;
-  fontSize: string;
-  position: {
+  children: React.ReactNode;
+  animationDelay: number;
+  animationType?: 'fadeIn' | 'fadeInUp' | 'slideLeft';
+  duration?: number;
+  className?: string;
+  position?: {
     top?: string;
     bottom?: string;
     left?: string;
     right?: string;
   };
-  animationDelay: number;
+  exitAnimation?: {
+    opacity?: number;
+    x?: number;
+    y?: number;
+  };
 }
 
-export const AnimatedText: React.FC<AnimatedTextProps> = ({ content, fontSize, position, animationDelay }) => {
+export const AnimatedText: React.FC<AnimatedTextProps> = ({ 
+  children,
+  animationDelay,
+  animationType = 'fadeInUp',
+  duration = 0.8,
+  className = '',
+  position,
+  exitAnimation,
+}) => {
+  const pos = position ?? {};
+  
+  // Define initial and animate props based on animation type
+  let initialProps: any = {};
+  let animateProps: any = {};
+  
+  switch (animationType) {
+    case 'fadeIn':
+      initialProps = { opacity: 0 };
+      animateProps = { opacity: 1 };
+      break;
+    case 'fadeInUp':
+      initialProps = { opacity: 0, y: 20 };
+      animateProps = { opacity: 1, y: 0 };
+      break;
+    case 'slideLeft':
+      initialProps = { opacity: 0, x: 100 };
+      animateProps = { opacity: 1, x: 0 };
+      break;
+    default:
+      initialProps = { opacity: 0, y: 20 };
+      animateProps = { opacity: 1, y: 0 };
+  }
+  
+  // Default Exit 
+  const exitProps = exitAnimation || { opacity: 0, x: -100 };
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={initialProps}
+      animate={animateProps}
+      exit={exitProps}
       transition={{
-        duration: 0.8,
+        duration,
         delay: animationDelay,
         ease: 'easeOut',
       }}
-      className={`absolute ${fontSize} font-bold text-white`}
+      className={className ?? undefined}
       style={{
-        top: position.top,
-        bottom: position.bottom,
-        left: position.left,
-        right: position.right,
+        marginTop: pos.top,
+        marginBottom: pos.bottom,
+        marginLeft: pos.left,
+        marginRight: pos.right,
       }}>
-      {content}
+      {children}
     </motion.div>
   );
 };

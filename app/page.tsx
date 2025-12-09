@@ -10,7 +10,7 @@ export default async function Home() {
   const backgroundImage = '/hyper-hire-bg-img.png';
 
   return (
-    <div className="min-h-screen w-full">
+    <div className="min-h-screen w-[1920px]">
       <Header />
       <HomeScreen data={homePageData} backgroundImage={backgroundImage} />
       <Footer />

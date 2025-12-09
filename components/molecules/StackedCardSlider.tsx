@@ -68,7 +68,7 @@ export const StackedCardSlider: React.FC<StackedCardSliderProps> = ({ cards }) =
   };
 
   return (
-    <div className="relative w-full h-[600px] flex items-center justify-center mt-[-245px]">
+    <div className="relative w-full h-[600px] flex items-center justify-center ">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -109,7 +109,7 @@ export const StackedCardSlider: React.FC<StackedCardSliderProps> = ({ cards }) =
                 zIndex: style.zIndex,
                 x: style.x,
                 scale: style.scale,
-                opacity: style.opacity !== undefined ? style.opacity : 1,
+                opacity: style.opacity ?? 1,
               }}
               transition={{
                 duration: 0.5,

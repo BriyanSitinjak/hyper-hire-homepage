@@ -11,20 +11,27 @@ export interface ProfileCard {
   infoItems: string[];
 }
 
+export interface BoxContentData {
+  id: string;
+  title: string;
+  subTitle: string;
+}
+
+export interface BoxSliderData {
+  icon: string;
+  title: string;
+}
+
 export interface HomePageData {
   leftContent: {
-    texts: Array<{
-      id: string;
-      content: string;
-      fontSize: string;
-      position: {
-        top?: string;
-        bottom?: string;
-        left?: string;
-        right?: string;
-      };
-      animationDelay: number;
-    }>;
+    popupContent: string;
+    title1: string;
+    title2: string;
+    subtitle1: string;
+    subtitle2: string;
+    subtitle3: string;
+    box: BoxContentData[];
   };
   cards: ProfileCard[];
+  boxSlider: BoxSliderData[];
 }
