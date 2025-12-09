@@ -35,3 +35,15 @@ export interface HomePageData {
   cards: ProfileCard[];
   boxSlider: BoxSliderData[];
 }
+
+export interface ServiceCard {
+  icon: string;
+  title: string;
+  link: string;
+}
+
+export interface TextFooterInterface {
+  title: string;
+  name: string;
+  address: string;
+}
